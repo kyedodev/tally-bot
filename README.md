@@ -1,2 +1,3 @@
-# tally-bot
+**tally** 🤖
+
 Discord bot to count up votes.
