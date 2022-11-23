@@ -48,3 +48,16 @@ export async function request( endpoint, options )
 
     return res;
 }
+
+async function registerCommand( endpoint, body )
+{
+    try
+    {
+        const res = await request(endpoint, { method : 'POST', body });
+        console.log(await res.json());
+    }
+    catch(err)
+    {
+        console.error('Error installing commands: ', err);
+    }
+}

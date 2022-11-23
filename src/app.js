@@ -1,12 +1,14 @@
 import express from 'express';
 import pdenv from 'pdenv';
 import { InteractionType, InteractionResponseType } from 'discord-interactions';
-import { verify, request } from './util.js';
+import { verify, request, registerCommands } from './util.js';
 
 
 
 pdenv.config();
 const app = express();
+
+const API_VERSION = 'v10';
 
 
 
@@ -40,30 +42,21 @@ app.post('/interactions', function(req, res)
 
 
 
-async function createCommand()
+async function registerCommands()
 {
-    const endpoint = `applications/${process.pdenv.APP_ID}/commands`;
-    const body     =
-    {
-        name        : 'test',
-        description : 'Testin commd.',
-        type        : 1,
-    };
+    const ep    = `https://discord.com/api/${API_VERSION}/`;
+    const cmdep = endpoint + 'commands';
 
-    try
-    {
-        const res = await request(endpoint, { method : 'POST', body });
-        console.log(await res.json());
-    }
-    catch(err)
-    {
-        console.error('Error installing commands: ', err);
-    }
+    registerCommand(cmdep,
+    {   name        : 'test',
+        description : 'Testing command.',
+        type        : 1,
+    });
 }
 
 
 
 app.listen(3000, function() {
     console.log(`Listening on port ${this.address().port}.`);
-    createCommand();
+    registerCommands();
 });
