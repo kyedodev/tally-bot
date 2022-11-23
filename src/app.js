@@ -16,13 +16,16 @@ app.post('/interactions', function(req, res)
 {
     const { type, data } = req.body;
 
-    if(data.name === 'test')
+    if(type === InteractionType.APPLICATION_COMMAND)
     {
-        return res.send(
+        if(data.name === 'test')
         {
-            type : InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-            data : { content : 'Test message. YIPPEE!!!' },
-        });
+            return res.send(
+            {
+                type : InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                data : { content : 'Test message. YIPPEE!!!' },
+            });
+        }
     }
 });
 
