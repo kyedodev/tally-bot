@@ -6,13 +6,13 @@ import { verify, request, registerCommand } from './util.js';
 
 
 pdenv.config();
+const { TOKEN, APP_ID, PUBLIC_KEY } = process.pdenv;
+
 const app = express();
 
-const API_VERSION = 'v10';
 
 
-
-app.use(express.json({ verify : verify(process.pdenv.PUBLIC_KEY) }));
+app.use(express.json({ verify : verify(PUBLIC_KEY) }));
 
 app.post('/interactions', function(req, res)
 {
@@ -44,10 +44,9 @@ app.post('/interactions', function(req, res)
 
 async function registerCommands()
 {
-    const endpoint     = `https://discord.com/api/${API_VERSION}/`;
-    const cmd_endpoint = endpoint + 'commands';
+    const endpoint = `applications/${APP_ID}/commands`;
 
-    registerCommand(cmd_endpoint,
+    registerCommand(endpoint,
     {   name        : 'test',
         description : 'Testing command.',
         type        : 1,

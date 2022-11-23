@@ -28,9 +28,8 @@ export async function request( endpoint, options )
 
     options.body = ( options.body ? JSON.stringify(options.body) : options.body);
 
-    const res = await fetch(url,
-    {
-        headers: {
+    const res = await fetch( url,
+    {   headers: {
             Authorization  : `Bot ${process.pdenv.TOKEN}`,
             'Content-Type' : 'application/json; charset=UTF-8',
             'User-Agent'   : `DiscordBot (https://github.com/kyedodev/tally-bot, 0.0.1)`, // TODO, get version from package.json later
@@ -48,6 +47,8 @@ export async function request( endpoint, options )
 
     return res;
 }
+
+
 
 export async function registerCommand( endpoint, body )
 {
