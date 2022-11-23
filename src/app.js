@@ -6,7 +6,7 @@ import { verify, request, registerCommand } from './util.js';
 
 
 pdenv.config();
-const { TOKEN, APP_ID, PUBLIC_KEY } = process.pdenv;
+const { TOKEN, APP_ID, PUBLIC_KEY, GUILD_ID } = process.pdenv;
 
 const app = express();
 
@@ -44,7 +44,7 @@ app.post('/interactions', function(req, res)
 
 async function registerCommands()
 {
-    const endpoint = `applications/${APP_ID}/commands`;
+    const endpoint = `applications/${APP_ID}/guilds/${GUILD_ID}/commands`;
 
     registerCommand(endpoint,
     {   name        : 'test',
