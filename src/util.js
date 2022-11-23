@@ -49,7 +49,7 @@ export async function request( endpoint, options )
     return res;
 }
 
-async function registerCommand( endpoint, body )
+export async function registerCommand( endpoint, body )
 {
     try
     {

@@ -1,7 +1,7 @@
 import express from 'express';
 import pdenv from 'pdenv';
 import { InteractionType, InteractionResponseType } from 'discord-interactions';
-import { verify, request, registerCommands } from './util.js';
+import { verify, request, registerCommand } from './util.js';
 
 
 
@@ -44,10 +44,10 @@ app.post('/interactions', function(req, res)
 
 async function registerCommands()
 {
-    const ep    = `https://discord.com/api/${API_VERSION}/`;
-    const cmdep = endpoint + 'commands';
+    const endpoint     = `https://discord.com/api/${API_VERSION}/`;
+    const cmd_endpoint = endpoint + 'commands';
 
-    registerCommand(cmdep,
+    registerCommand(cmd_endpoint,
     {   name        : 'test',
         description : 'Testing command.',
         type        : 1,
