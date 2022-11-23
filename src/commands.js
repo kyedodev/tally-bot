@@ -1,7 +1,7 @@
 // trans rights, black lives matter, slava ukraini.
 // kye cedar >:3c
 
-exports.commands =
+const commands =
 {   rest :
     [
         {   name        : 'ping',
@@ -14,3 +14,7 @@ exports.commands =
         },
     },
 };
+
+
+
+export { commands };
