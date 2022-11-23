@@ -16,16 +16,25 @@ app.post('/interactions', function(req, res)
 {
     const { type, data } = req.body;
 
-    if(type === InteractionType.APPLICATION_COMMAND)
+    switch(type)
     {
-        if(data.name === 'test')
-        {
-            return res.send(
+        case InteractionType.PING:
+            return res.send({ type: InteractionResponseType.PONG });
+        case InteractionType.APPLICATION_COMMAND:
+            const { name } = data;
+
+            switch(name)
             {
-                type : InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                data : { content : 'Test message. YIPPEE!!!' },
-            });
-        }
+                case 'test':
+                    return res.send(
+                    {
+                        type : InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                        data :
+                        {
+                            content : 'Test message. YIPPEE!!!',
+                        },
+                    });
+            }
     }
 });
 
