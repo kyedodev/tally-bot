@@ -9,9 +9,7 @@ const { TOKEN, APP_ID, PUBLIC_KEY, GUILD_ID, PORT } = process.pdenv;
 
 
 import { login } from './discord.js';
-import express from './express.js';
-
-const app = express();
+import './express.js';
 
 
 
