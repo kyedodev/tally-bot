@@ -41,7 +41,7 @@ const client = new Client({ intents });
     catch(err)
     {   console.error('Error registering commands. ', err);
     }
-});
+})();
 
 
 
